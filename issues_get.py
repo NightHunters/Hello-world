@@ -5,7 +5,16 @@ from bs4 import BeautifulSoup
 
 num = 0  # 定义条数的初始值
 # 定义一个变量url，为需要爬取数据的网页网址
-for page in range(10):
+
+#输出到文件的信息定义
+save_path='F:\\'
+save_name='\\issues''.txt'
+full_path=save_path+save_name
+fp=open(full_path,'w')
+fp.close()
+fp=open(full_path,'a+')
+
+for page in range(3):
     value=page
     url = 'https://github.com/microsoft/vscode/issues?page=%s&q=is%%3Aissue+is%%3Aopen' %str(value)
 # 获取这个网页的源代码，存放在req中，{}中为不同浏览器的不同User-Agent属性，针对不同浏览器可以自行百度
@@ -22,3 +31,5 @@ for page in range(10):
         if not msg is None:
             num += 1
         print('第', num, '条', msg)
+        fp.write('第'+str(num)+'条\t'+msg + '\n')
+fp.close()
