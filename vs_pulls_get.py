@@ -15,7 +15,7 @@ fp.close()
 fp=open(full_path,'a+',encoding='utf-8')
 
 for page in range(8):
-    url = 'https://github.com/microsoft/vscode/pulls?page=%s&q=is%%3Aopen+is%%3Apr' %str(page)
+    url = 'https://github.com/microsoft/vscode/pulls?page=%s&q=is%%3Aopen+is%%3Apr' %str(page+1)
 # 获取这个网页的源代码，存放在req中，{}中为不同浏览器的不同User-Agent属性，针对不同浏览器可以自行百度
     req = requests.get(url, {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11'})
 # 生成一个Beautifulsoup对象，用以后边的查找工作
@@ -32,10 +32,10 @@ for page in range(8):
             num += 1
         #print('第', num, '条', msg)
         fp.write('第'+str(num)+'条\t'+msg + '\n')
-    print(str(page))
+    print(str(page+1))
 
 for page1 in range(233):
-    url1 = 'https://github.com/microsoft/vscode/pulls?page=%s&q=is%%3Apr+is%%3Aclosed' %str(page1)
+    url1 = 'https://github.com/microsoft/vscode/pulls?page=%s&q=is%%3Apr+is%%3Aclosed' %str(page1+1)
 # 获取这个网页的源代码，存放在req中，{}中为不同浏览器的不同User-Agent属性，针对不同浏览器可以自行百度
     req1 = requests.get(url1, {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11'})
 # 生成一个Beautifulsoup对象，用以后边的查找工作
@@ -52,7 +52,7 @@ for page1 in range(233):
             num += 1
         #print('第', num, '条', msg)
         fp.write('第'+str(num)+'条\t'+msg1 + '\n')
-    print(str(page1))
+    print(str(page1+1))
 
 fp.close()
 print('finsh')
